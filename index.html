@@ -1,180 +1,176 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ur">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Junaid Jamshed - WhatsApp Channel</title>
-    <!-- Modern Font and Icons -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Poppins', sans-serif;
-        }
-        
-        body {
-            /* Clean Dark Gradient Background */
-            background: linear-gradient(135deg, #111827, #1f2937, #374151); 
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-        }
-
-        .card {
-            background: rgba(255, 255, 255, 0.98);
-            border-radius: 24px;
-            padding: 50px 30px 30px;
-            max-width: 400px;
-            width: 100%;
-            text-align: center;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
-            position: relative;
-            margin-top: 60px; /* Space for profile picture */
-        }
-
-        /* Profile Picture Design */
-        .profile-pic {
-            width: 110px;
-            height: 110px;
-            border-radius: 50%;
-            border: 4px solid #fff;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-            position: absolute;
-            top: -55px;
-            left: 50%;
-            transform: translateX(-50%);
-            background-color: #f4f4f4;
-            object-fit: cover;
-        }
-
-        h1 {
-            font-size: 22px;
-            color: #1a1a1a;
-            margin-top: 15px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 6px;
-            font-weight: 700;
-        }
-
-        .username {
-            font-size: 13px;
-            color: #666;
-            margin-top: -2px;
-            font-weight: 500;
-        }
-
-        .fan-badge {
-            display: inline-block;
-            background-color: #f3f4f6;
-            color: #4b5563;
-            font-size: 11px;
-            padding: 3px 8px;
-            border-radius: 12px;
-            margin-top: 5px;
-            font-weight: 600;
-        }
-
-        .subtitle {
-            font-size: 14px;
-            color: #444;
-            margin: 20px 0 30px;
-            line-height: 1.6;
-        }
-
-        /* VIP Animated Button */
-        .copy-btn {
-            background: linear-gradient(to right, #25D366, #128C7E);
-            color: white;
-            border: none;
-            padding: 16px 20px;
-            font-size: 15px;
-            font-weight: 600;
-            border-radius: 50px;
-            cursor: pointer;
-            width: 100%;
-            transition: all 0.3s ease;
-            box-shadow: 0 8px 20px rgba(37, 211, 102, 0.3);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-        }
-
-        .copy-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 12px 25px rgba(37, 211, 102, 0.5);
-        }
-
-        /* Pulse Animation for Copy Button */
-        .pulse {
-            animation: pulse-animation 2s infinite;
-        }
-
-        @keyframes pulse-animation {
-            0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.5); }
-            70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
-        }
-
-        /* Button State After Copying */
-        .copy-btn.copied {
-            background: linear-gradient(to right, #34B7F1, #2b9ed4); 
-            box-shadow: 0 8px 20px rgba(52, 183, 241, 0.4);
-            font-size: 14px;
-            animation: none; 
-        }
-
-        .whatsapp-icon {
-            font-size: 20px;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>Junaid Jamshed | WhatsApp Channel</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --emerald-deep:#0b3d2e;
+    --emerald-dark:#082a20;
+    --gold:#d4af37;
+    --gold-soft:#e9cd7a;
+    --cream:#f6efdd;
+    --ink:#0f1d16;
+    --sage:#7fa88f;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html,body{height:100%;background:var(--emerald-dark);font-family:'Poppins',sans-serif;color:var(--cream);overflow-x:hidden;}
+  body{
+    display:flex;align-items:center;justify-content:center;min-height:100vh;padding:28px 18px;position:relative;
+    background:
+      radial-gradient(circle at 20% 15%, rgba(212,175,55,0.10), transparent 40%),
+      radial-gradient(circle at 85% 85%, rgba(212,175,55,0.08), transparent 45%),
+      linear-gradient(160deg, var(--emerald-dark) 0%, var(--emerald-deep) 55%, #052018 100%);
+  }
+  .lattice{position:fixed;inset:0;opacity:0.06;background-image:repeating-linear-gradient(45deg, var(--gold) 0 1px, transparent 1px 34px),repeating-linear-gradient(-45deg, var(--gold) 0 1px, transparent 1px 34px);pointer-events:none;}
+  .card{
+    position:relative;width:100%;max-width:400px;
+    background:linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
+    border:1px solid rgba(212,175,55,0.35);border-radius:22px;padding:38px 26px 34px;text-align:center;
+    box-shadow:0 30px 60px -20px rgba(0,0,0,0.6), 0 0 0 1px rgba(212,175,55,0.06) inset;
+    backdrop-filter:blur(6px);animation:rise 0.7s cubic-bezier(.2,.8,.2,1) both;
+  }
+  @keyframes rise{from{opacity:0;transform:translateY(18px);}to{opacity:1;transform:translateY(0);}}
+  .card::before,.card::after{content:"";position:absolute;width:26px;height:26px;border:1.5px solid var(--gold);opacity:0.55;}
+  .card::before{top:10px;left:10px;border-right:none;border-bottom:none;border-top-left-radius:10px;}
+  .card::after{bottom:10px;right:10px;border-left:none;border-top:none;border-bottom-right-radius:10px;}
+  .vip-badge{display:inline-flex;align-items:center;gap:6px;padding:6px 16px;border:1px solid var(--gold);border-radius:999px;font-size:11px;letter-spacing:3px;color:var(--gold-soft);background:rgba(212,175,55,0.08);margin-bottom:22px;text-transform:uppercase;}
+  .avatar-ring{width:96px;height:96px;margin:0 auto 18px;border-radius:50%;padding:3px;background:conic-gradient(from 180deg, var(--gold), var(--gold-soft), var(--gold));display:flex;align-items:center;justify-content:center;}
+  .avatar-ring .inner{width:100%;height:100%;border-radius:50%;background:var(--emerald-deep);display:flex;align-items:center;justify-content:center;font-family:'Amiri',serif;font-size:34px;color:var(--gold-soft);overflow:hidden;}
+  .avatar-ring .inner img{width:100%;height:100%;object-fit:cover;border-radius:50%;}
+  h1{font-family:'Amiri',serif;font-weight:700;font-size:26px;color:var(--cream);letter-spacing:0.5px;margin-bottom:4px;}
+  .subtitle{font-size:13px;color:var(--sage);letter-spacing:1px;margin-bottom:22px;}
+  .divider{width:60px;height:1px;margin:0 auto 22px;background:linear-gradient(90deg, transparent, var(--gold), transparent);}
+  .desc{font-size:14px;line-height:1.9;color:#d8e3dc;margin-bottom:28px;padding:0 4px;white-space:pre-line;}
+  .link-box{display:flex;align-items:center;gap:10px;background:rgba(0,0,0,0.25);border:1px solid rgba(212,175,55,0.3);border-radius:12px;padding:12px 14px;margin-bottom:16px;}
+  .link-box span{flex:1;text-align:left;font-size:12px;color:#bcd0c6;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;direction:ltr;}
+  .btn-copy{width:100%;padding:15px;border:none;border-radius:12px;background:linear-gradient(135deg, var(--gold-soft), var(--gold));color:var(--emerald-dark);font-family:'Poppins',sans-serif;font-weight:600;font-size:15px;letter-spacing:0.5px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:10px;transition:transform 0.15s ease;box-shadow:0 10px 25px -8px rgba(212,175,55,0.5);}
+  .btn-copy:active{transform:scale(0.97);}
+  .btn-copy.copied{background:linear-gradient(135deg, #8fd6ac, #5cb885);color:var(--emerald-dark);}
+  .btn-copy svg{width:18px;height:18px;flex-shrink:0;}
+  .btn-open{display:block;margin-top:12px;font-size:13px;color:var(--sage);text-decoration:underline;text-underline-offset:3px;}
+  .loading-dim{opacity:0.4;filter:blur(1px);transition:opacity 0.3s ease, filter 0.3s ease;}
+</style>
 </head>
 <body>
 
-    <div class="card">
-        <!-- 🔴 Yahan apni TikTok wali DP (Coffee or Tea wali) ka naam likhein 🔴 -->
-        <img src="profile.jpg" alt="Junaid Jamshed Profile" class="profile-pic" onerror="this.src='https://cdn-icons-png.flaticon.com/512/149/149071.png'">
-        
-        <h1>Junaid jamshed</h1>
-        <div class="username">@junaid.jamshed520</div>
-        <div class="fan-badge">Fan Page</div>
-        
-        <p class="subtitle">
-            Asslamulaikum! Hamare WhatsApp channel mein khush amadeed. <br><br>
-            TikTok ke browser mein WhatsApp seedha open nahi hota. Niche button par click kar ke link copy karein!
-        </p>
-        
-        <button id="copyBtn" class="copy-btn pulse" onclick="copyLink()">
-            <i class="fab fa-whatsapp whatsapp-icon"></i> Copy WhatsApp Link
-        </button>
-    </div>
+<div class="lattice"></div>
 
-    <script>
-        function copyLink() {
-            const linkToCopy = "https://whatsapp.com/channel/0029Vb8ttwtKWEKu6p6kGx3c";
-            
-            navigator.clipboard.writeText(linkToCopy).then(() => {
-                const btn = document.getElementById("copyBtn");
-                
-                // Button Text Update
-                btn.innerHTML = '<i class="fas fa-check-circle whatsapp-icon"></i> Link copied! Ab WhatsApp ki chat mein paste kar ke join karein';
-                btn.classList.add("copied");
-                btn.classList.remove("pulse");
-                
-            }).catch(err => {
-                console.error('Copy failed: ', err);
-                alert("Browser ne link copy karne ki ijazat nahi di. Please khud copy karein.");
-            });
-        }
-    </script>
+<div class="card" id="card">
+  <div class="vip-badge">✦ VIP Channel ✦</div>
+
+  <div class="avatar-ring"><div class="inner" id="avatarInner">JJ</div></div>
+
+  <h1 id="nameText">Junaid Jamshed</h1>
+  <div class="subtitle" id="subtitleText">Official Fan WhatsApp Channel</div>
+
+  <div class="divider"></div>
+
+  <p class="desc" id="aboutText">Loading...</p>
+
+  <div class="link-box">
+    <span id="linkText">whatsapp.com/channel/...</span>
+  </div>
+
+  <button class="btn-copy" id="copyBtn" onclick="copyLink()">
+    <svg id="copyIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <rect x="9" y="9" width="12" height="12" rx="2"></rect>
+      <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+    </svg>
+    <span id="btnLabel">Link Copy Karein</span>
+  </button>
+
+  <a class="btn-open" id="openLink" href="#" target="_blank" rel="noopener">
+    Ya seedha yahan tap karein
+  </a>
+</div>
+
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-app.js";
+  import { getFirestore, doc, onSnapshot } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyBWvG8HNIZu_SGzdGLRS48GJgjUnRxtYg8",
+    authDomain: "automatic-automation.firebaseapp.com",
+    projectId: "automatic-automation",
+    storageBucket: "automatic-automation.firebasestorage.app",
+    messagingSenderId: "681446815023",
+    appId: "1:681446815023:web:b7a9111a6a13dee7e59dda",
+    measurementId: "G-EFEKPW5VY7"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+
+  let currentLink = "";
+
+  const configRef = doc(db, "site", "config");
+
+  onSnapshot(configRef, (snap) => {
+    if(!snap.exists()) return;
+    const data = snap.data();
+
+    document.getElementById('nameText').textContent = data.name || "Junaid Jamshed";
+    document.getElementById('subtitleText').textContent = data.subtitle || "Official Fan WhatsApp Channel";
+    document.getElementById('aboutText').textContent = data.about || "";
+
+    const link = data.whatsappLink || "";
+    currentLink = link;
+    document.getElementById('linkText').textContent = link.replace(/^https?:\/\//,'');
+    document.getElementById('openLink').href = link;
+
+    const avatarInner = document.getElementById('avatarInner');
+    if(data.avatarUrl){
+      avatarInner.innerHTML = `<img src="${data.avatarUrl}" alt="profile">`;
+    } else {
+      avatarInner.textContent = data.initials || "JJ";
+    }
+  }, (err) => {
+    console.error("Firestore read error:", err);
+    document.getElementById('aboutText').textContent = "Content load nahi ho saka.";
+  });
+
+  window.copyLink = function(){
+    const btn = document.getElementById('copyBtn');
+    const label = document.getElementById('btnLabel');
+    const link = currentLink;
+
+    function showCopied(){
+      btn.classList.add('copied');
+      label.textContent = "Copy Ho Gaya! ✓";
+      setTimeout(() => {
+        btn.classList.remove('copied');
+        label.textContent = "Link Copy Karein";
+      }, 2000);
+    }
+
+    if(navigator.clipboard && window.isSecureContext){
+      navigator.clipboard.writeText(link).then(showCopied).catch(fallbackCopy);
+    } else {
+      fallbackCopy();
+    }
+
+    function fallbackCopy(){
+      const ta = document.createElement('textarea');
+      ta.value = link;
+      ta.style.position = 'fixed';
+      ta.style.opacity = '0';
+      document.body.appendChild(ta);
+      ta.focus();
+      ta.select();
+      try{
+        document.execCommand('copy');
+        showCopied();
+      }catch(e){
+        label.textContent = "Copy nahi hua, manually select karein";
+      }
+      document.body.removeChild(ta);
+    }
+  };
+</script>
 
 </body>
 </html>
