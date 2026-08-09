@@ -112,6 +112,16 @@
         <div class="stat-label">Se TikTok</div>
       </div>
     </div>
+    <div class="stat-cards">
+      <div class="stat-card">
+        <div class="stat-num" id="copiedVisits">–</div>
+        <div class="stat-label">Link Copy Kiya</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num" id="bouncedVisits">–</div>
+        <div class="stat-label">Bina Kuch Kiye Gaye</div>
+      </div>
+    </div>
 
     <button class="secondary" onclick="loadVisitors()">Refresh</button>
 
@@ -252,6 +262,12 @@
       const tiktokSnap = await getCountFromServer(query(visitsRef, where("fromTikTok", "==", true)));
       document.getElementById('tiktokVisits').textContent = tiktokSnap.data().count;
 
+      const copiedSnap = await getCountFromServer(query(visitsRef, where("action", "in", ["copied","opened_direct"])));
+      document.getElementById('copiedVisits').textContent = copiedSnap.data().count;
+
+      const bouncedSnap = await getCountFromServer(query(visitsRef, where("action", "==", "bounced")));
+      document.getElementById('bouncedVisits').textContent = bouncedSnap.data().count;
+
       const recentQ = query(visitsRef, orderBy("timestamp", "desc"), limit(30));
       const recentSnap = await getDocs(recentQ);
 
@@ -265,11 +281,14 @@
         const v = docSnap.data();
         const t = v.timestamp && v.timestamp.toDate ? v.timestamp.toDate().toLocaleString() : '—';
         const src = v.fromTikTok ? 'TikTok se aaya' : (v.referrer && v.referrer !== 'direct' ? v.referrer : 'Direct link');
+        const actionLabel = v.action === 'copied' ? '✓ Link Copy Kiya' : v.action === 'opened_direct' ? '✓ Direct Open Kiya' : v.action === 'bounced' ? '✗ Kuch nahi kiya' : '… abhi page par hai';
+        const timeSpent = v.timeOnPageSec ? `⏱ ${v.timeOnPageSec} second page par ruka` : '';
         const row = document.createElement('div');
         row.className = 'visitor-row';
         row.innerHTML = `
           <div class="vtop"><span class="vip">${v.ip || 'unknown'}</span><span class="vtime">${t}</span></div>
           <div class="vsrc">${src}${v.fromTikTok ? '<span class="badge-tiktok">TikTok</span>' : ''}</div>
+          <div class="vsrc">${actionLabel} ${timeSpent ? '· ' + timeSpent : ''}</div>
         `;
         listEl.appendChild(row);
       });
