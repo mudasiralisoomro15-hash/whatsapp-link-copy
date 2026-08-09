@@ -60,6 +60,9 @@
     <label>Subtitle</label>
     <input type="text" id="fSubtitle" placeholder="Official Fan WhatsApp Channel">
 
+    <label>Trust Line (VIP Verified Page ke saath dikhta hai)</label>
+    <input type="text" id="fTrustText" placeholder="Trusted by 3,000+ followers">
+
     <label>About / Description Text</label>
     <textarea id="fAbout" placeholder="Maine naya WhatsApp channel banaya hai..."></textarea>
 
@@ -141,6 +144,7 @@
       const d = snap.data();
       document.getElementById('fName').value = d.name || '';
       document.getElementById('fSubtitle').value = d.subtitle || '';
+      document.getElementById('fTrustText').value = d.trustText || '';
       document.getElementById('fAbout').value = d.about || '';
       document.getElementById('fLink').value = d.whatsappLink || '';
       document.getElementById('fAvatarUrl').value = d.avatarUrl || '';
@@ -182,6 +186,7 @@
       await setDoc(configRef, {
         name: document.getElementById('fName').value.trim(),
         subtitle: document.getElementById('fSubtitle').value.trim(),
+        trustText: document.getElementById('fTrustText').value.trim(),
         about: document.getElementById('fAbout').value.trim(),
         whatsappLink: document.getElementById('fLink').value.trim(),
         avatarUrl: document.getElementById('fAvatarUrl').value.trim(),
