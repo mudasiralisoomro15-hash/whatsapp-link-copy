@@ -3,108 +3,163 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Join Junaid Jamshed Fan Channel</title>
+    <title>Tiktok Relative Questions - WhatsApp</title>
+    <!-- Modern Font and Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <style>
-        /* Modern aur attractive UI CSS */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #25D366, #128C7E);
-            height: 100vh;
+            /* VIP Dark Gradient Background */
+            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364); 
+            min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            margin: 0;
-            color: #333;
+            padding: 20px;
         }
+
         .card {
-            background: white;
-            padding: 40px 30px;
-            border-radius: 20px;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+            background: rgba(255, 255, 255, 0.98);
+            border-radius: 24px;
+            padding: 50px 30px 30px;
+            max-width: 400px;
+            width: 100%;
             text-align: center;
-            max-width: 380px;
-            width: 90%;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+            position: relative;
+            margin-top: 60px; /* Space for profile picture */
         }
-        .icon {
-            width: 70px;
-            margin-bottom: 15px;
+
+        /* Profile Picture Design */
+        .profile-pic {
+            width: 110px;
+            height: 110px;
+            border-radius: 50%;
+            border: 4px solid #fff;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+            position: absolute;
+            top: -55px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #f4f4f4;
+            object-fit: cover;
         }
-        h2 {
-            margin: 0 0 10px;
-            color: #075E54;
-            font-size: 24px;
+
+        h1 {
+            font-size: 22px;
+            color: #1a1a1a;
+            margin-top: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            font-weight: 700;
         }
-        p {
-            font-size: 15px;
+
+        /* Official Verified Badge */
+        .verified {
+            color: #25D366;
+            font-size: 18px;
+        }
+
+        .subtitle {
+            font-size: 14px;
             color: #555;
-            margin-bottom: 25px;
+            margin: 15px 0 30px;
             line-height: 1.6;
         }
+
+        /* VIP Animated Button */
         .copy-btn {
-            background-color: #25D366;
+            background: linear-gradient(to right, #25D366, #128C7E);
             color: white;
             border: none;
             padding: 16px 20px;
             font-size: 16px;
-            font-weight: bold;
-            border-radius: 12px;
+            font-weight: 600;
+            border-radius: 50px; /* Pill shape */
             cursor: pointer;
             width: 100%;
             transition: all 0.3s ease;
-            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
+            box-shadow: 0 8px 20px rgba(37, 211, 102, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
         }
+
         .copy-btn:hover {
-            background-color: #128C7E;
-            transform: translateY(-2px);
+            transform: translateY(-3px);
+            box-shadow: 0 12px 25px rgba(37, 211, 102, 0.5);
         }
+
+        /* Pulse Animation for Copy Button */
+        .pulse {
+            animation: pulse-animation 2s infinite;
+        }
+
+        @keyframes pulse-animation {
+            0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.5); }
+            70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+        }
+
+        /* Button State After Copying */
         .copy-btn.copied {
-            background-color: #34B7F1; /* Blue color after copying */
-            box-shadow: 0 6px 20px rgba(52, 183, 241, 0.4);
-            font-size: 15px;
+            background: linear-gradient(to right, #34B7F1, #2b9ed4); /* Blue color */
+            box-shadow: 0 8px 20px rgba(52, 183, 241, 0.4);
+            font-size: 13.5px;
+            animation: none; /* Stop pulsing when copied */
         }
-        .instructions {
-            margin-top: 20px;
-            font-size: 13px;
-            color: #777;
-            font-weight: 500;
+
+        .whatsapp-icon {
+            font-size: 22px;
         }
     </style>
 </head>
 <body>
 
     <div class="card">
-        <!-- WhatsApp Icon SVG -->
-        <svg class="icon" viewBox="0 0 24 24" fill="#25D366" xmlns="http://www.w3.org/2000/svg">
-            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
-        </svg>
+        <!-- 🔴 YAHAN APNI IMAGE KA NAAM LIKHEIN 🔴 -->
+        <!-- Misal ke taur par agar aap ne image ka naam 'logo.jpg' rakha hai, to niche src="logo.jpg" kar dein -->
+        <img src="profile.jpg" alt="Channel Profile" class="profile-pic" onerror="this.src='https://cdn-icons-png.flaticon.com/512/149/149071.png'">
         
-        <h2>Join Our Channel</h2>
-        <p>TikTok ke browser mein WhatsApp open nahi hota. Niche diye gaye button se link copy karein.</p>
+        <h1>Tiktok Relative Questions <i class="fas fa-check-circle verified"></i></h1>
         
-        <!-- Copy Button -->
-        <button id="copyBtn" class="copy-btn" onclick="copyLink()">Copy WhatsApp Link</button>
+        <p class="subtitle">
+            Asslamulaikum! Ye naya channel banaya hai jahan main aap ke sawaalon ke jawaab donga. 
+            <br><br>
+            TikTok ke browser mein WhatsApp seedha open nahi hota. Niche button se link copy karein!
+        </p>
         
-        <p class="instructions" id="instructions"></p>
+        <button id="copyBtn" class="copy-btn pulse" onclick="copyLink()">
+            <i class="fab fa-whatsapp whatsapp-icon"></i> Copy WhatsApp Link
+        </button>
     </div>
 
     <script>
         function copyLink() {
-            // Aap ki original WhatsApp link
             const linkToCopy = "https://whatsapp.com/channel/0029Vb8ttwtKWEKu6p6kGx3c";
             
             navigator.clipboard.writeText(linkToCopy).then(() => {
                 const btn = document.getElementById("copyBtn");
-                const inst = document.getElementById("instructions");
                 
-                // Button ka text aur color change ho jayega
-                btn.innerText = "Link copied! Ab WhatsApp ki chat mein paste kar ke join karein.";
+                // Text aur icon update karna (Aap ki request ke mutabiq)
+                btn.innerHTML = '<i class="fas fa-check-circle whatsapp-icon"></i> Link copied! Ab WhatsApp ki chat mein paste kar ke join karein';
                 btn.classList.add("copied");
+                btn.classList.remove("pulse");
                 
-                // Niche extra instructions show ho jayengi
-                inst.innerText = "Apne kisi dost ki chat mein ya browser mein ye link paste karein aur channel open karein.";
             }).catch(err => {
                 console.error('Copy failed: ', err);
-                alert("Link copy nahi ho saki, please manually copy karein.");
+                alert("Browser ne link copy karne ki ijazat nahi di. Please khud copy karein.");
             });
         }
     </script>
