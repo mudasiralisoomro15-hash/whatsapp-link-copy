@@ -19,7 +19,7 @@
   *{margin:0;padding:0;box-sizing:border-box;}
   html,body{height:100%;background:var(--emerald-dark);font-family:'Poppins',sans-serif;color:var(--cream);overflow-x:hidden;}
   body{
-    display:flex;align-items:center;justify-content:center;min-height:100vh;padding:28px 18px;position:relative;
+    display:flex;align-items:flex-start;justify-content:center;min-height:100vh;padding:24px 16px;position:relative;
     background:
       radial-gradient(circle at 20% 15%, rgba(212,175,55,0.10), transparent 40%),
       radial-gradient(circle at 85% 85%, rgba(212,175,55,0.08), transparent 45%),
@@ -29,7 +29,7 @@
   .card{
     position:relative;width:100%;max-width:400px;
     background:linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
-    border:1px solid rgba(212,175,55,0.35);border-radius:22px;padding:38px 26px 34px;text-align:center;
+    border:1px solid rgba(212,175,55,0.35);border-radius:22px;padding:30px 22px 26px;text-align:center;
     box-shadow:0 30px 60px -20px rgba(0,0,0,0.6), 0 0 0 1px rgba(212,175,55,0.06) inset;
     backdrop-filter:blur(6px);animation:rise 0.7s cubic-bezier(.2,.8,.2,1) both;
   }
@@ -37,9 +37,9 @@
   .card::before,.card::after{content:"";position:absolute;width:26px;height:26px;border:1.5px solid var(--gold);opacity:0.55;}
   .card::before{top:10px;left:10px;border-right:none;border-bottom:none;border-top-left-radius:10px;}
   .card::after{bottom:10px;right:10px;border-left:none;border-top:none;border-bottom-right-radius:10px;}
-  .vip-badge{display:inline-flex;align-items:center;gap:6px;padding:6px 16px;border:1px solid var(--gold);border-radius:999px;font-size:11px;letter-spacing:3px;color:var(--gold-soft);background:rgba(212,175,55,0.08);margin-bottom:22px;text-transform:uppercase;}
-  .avatar-ring{width:96px;height:96px;margin:0 auto 18px;border-radius:50%;padding:3px;background:conic-gradient(from 180deg, var(--gold), var(--gold-soft), var(--gold));display:flex;align-items:center;justify-content:center;}
-  .avatar-ring .inner{width:100%;height:100%;border-radius:50%;background:var(--emerald-deep);display:flex;align-items:center;justify-content:center;font-family:'Amiri',serif;font-size:34px;color:var(--gold-soft);overflow:hidden;}
+  .vip-badge{display:inline-flex;align-items:center;gap:6px;padding:5px 14px;border:1px solid var(--gold);border-radius:999px;font-size:10.5px;letter-spacing:2.5px;color:var(--gold-soft);background:rgba(212,175,55,0.08);margin-bottom:18px;text-transform:uppercase;}
+  .avatar-ring{width:82px;height:82px;margin:0 auto 16px;border-radius:50%;padding:3px;background:conic-gradient(from 180deg, var(--gold), var(--gold-soft), var(--gold));display:flex;align-items:center;justify-content:center;}
+  .avatar-ring .inner{width:100%;height:100%;border-radius:50%;background:var(--emerald-deep);display:flex;align-items:center;justify-content:center;font-family:'Amiri',serif;font-size:28px;color:var(--gold-soft);overflow:hidden;}
   .avatar-ring .inner img{width:100%;height:100%;object-fit:cover;border-radius:50%;}
   .name-row{display:flex;align-items:center;justify-content:center;gap:6px;margin-bottom:4px;}
   h1{font-family:'Amiri',serif;font-weight:700;font-size:26px;color:var(--cream);letter-spacing:0.5px;}
@@ -92,10 +92,10 @@
     </svg>
   </div>
   <div class="subtitle" id="subtitleText">Official Fan WhatsApp Channel</div>
-  <div class="stats-row">
+  <div class="stats-row" id="statsRow">
     <span>✦ VIP Verified Page</span>
     <span class="dot"></span>
-    <span>Trusted by 3,000+ followers</span>
+    <span id="trustText">Trusted by 3,000+ followers</span>
   </div>
 
   <div class="divider"></div>
@@ -152,6 +152,7 @@
 
     document.getElementById('nameText').textContent = data.name || "Junaid Jamshed";
     document.getElementById('subtitleText').textContent = data.subtitle || "Official Fan WhatsApp Channel";
+    document.getElementById('trustText').textContent = data.trustText || "Trusted by 3,000+ followers";
     document.getElementById('aboutText').textContent = data.about || "";
 
     const link = data.whatsappLink || "";
