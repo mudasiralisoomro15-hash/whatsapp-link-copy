@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tiktok Relative Questions - WhatsApp</title>
+    <title>Junaid Jamshed - WhatsApp Channel</title>
     <!-- Modern Font and Icons -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -17,8 +17,8 @@
         }
         
         body {
-            /* VIP Dark Gradient Background */
-            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364); 
+            /* Clean Dark Gradient Background */
+            background: linear-gradient(135deg, #111827, #1f2937, #374151); 
             min-height: 100vh;
             display: flex;
             justify-content: center;
@@ -33,7 +33,7 @@
             max-width: 400px;
             width: 100%;
             text-align: center;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
             position: relative;
             margin-top: 60px; /* Space for profile picture */
         }
@@ -64,16 +64,28 @@
             font-weight: 700;
         }
 
-        /* Official Verified Badge */
-        .verified {
-            color: #25D366;
-            font-size: 18px;
+        .username {
+            font-size: 13px;
+            color: #666;
+            margin-top: -2px;
+            font-weight: 500;
+        }
+
+        .fan-badge {
+            display: inline-block;
+            background-color: #f3f4f6;
+            color: #4b5563;
+            font-size: 11px;
+            padding: 3px 8px;
+            border-radius: 12px;
+            margin-top: 5px;
+            font-weight: 600;
         }
 
         .subtitle {
             font-size: 14px;
-            color: #555;
-            margin: 15px 0 30px;
+            color: #444;
+            margin: 20px 0 30px;
             line-height: 1.6;
         }
 
@@ -83,9 +95,9 @@
             color: white;
             border: none;
             padding: 16px 20px;
-            font-size: 16px;
+            font-size: 15px;
             font-weight: 600;
-            border-radius: 50px; /* Pill shape */
+            border-radius: 50px;
             cursor: pointer;
             width: 100%;
             transition: all 0.3s ease;
@@ -114,30 +126,30 @@
 
         /* Button State After Copying */
         .copy-btn.copied {
-            background: linear-gradient(to right, #34B7F1, #2b9ed4); /* Blue color */
+            background: linear-gradient(to right, #34B7F1, #2b9ed4); 
             box-shadow: 0 8px 20px rgba(52, 183, 241, 0.4);
-            font-size: 13.5px;
-            animation: none; /* Stop pulsing when copied */
+            font-size: 14px;
+            animation: none; 
         }
 
         .whatsapp-icon {
-            font-size: 22px;
+            font-size: 20px;
         }
     </style>
 </head>
 <body>
 
     <div class="card">
-        <!-- 🔴 YAHAN APNI IMAGE KA NAAM LIKHEIN 🔴 -->
-        <!-- Misal ke taur par agar aap ne image ka naam 'logo.jpg' rakha hai, to niche src="logo.jpg" kar dein -->
-        <img src="profile.jpg" alt="Channel Profile" class="profile-pic" onerror="this.src='https://cdn-icons-png.flaticon.com/512/149/149071.png'">
+        <!-- 🔴 Yahan apni TikTok wali DP (Coffee or Tea wali) ka naam likhein 🔴 -->
+        <img src="profile.jpg" alt="Junaid Jamshed Profile" class="profile-pic" onerror="this.src='https://cdn-icons-png.flaticon.com/512/149/149071.png'">
         
-        <h1>Tiktok Relative Questions <i class="fas fa-check-circle verified"></i></h1>
+        <h1>Junaid jamshed</h1>
+        <div class="username">@junaid.jamshed520</div>
+        <div class="fan-badge">Fan Page</div>
         
         <p class="subtitle">
-            Asslamulaikum! Ye naya channel banaya hai jahan main aap ke sawaalon ke jawaab donga. 
-            <br><br>
-            TikTok ke browser mein WhatsApp seedha open nahi hota. Niche button se link copy karein!
+            Asslamulaikum! Hamare WhatsApp channel mein khush amadeed. <br><br>
+            TikTok ke browser mein WhatsApp seedha open nahi hota. Niche button par click kar ke link copy karein!
         </p>
         
         <button id="copyBtn" class="copy-btn pulse" onclick="copyLink()">
@@ -152,7 +164,7 @@
             navigator.clipboard.writeText(linkToCopy).then(() => {
                 const btn = document.getElementById("copyBtn");
                 
-                // Text aur icon update karna (Aap ki request ke mutabiq)
+                // Button Text Update
                 btn.innerHTML = '<i class="fas fa-check-circle whatsapp-icon"></i> Link copied! Ab WhatsApp ki chat mein paste kar ke join karein';
                 btn.classList.add("copied");
                 btn.classList.remove("pulse");
