@@ -156,8 +156,9 @@
 
   (async function logVisit(){
     try{
-      // Same device/browser ka visit dobara count na ho
-      if(localStorage.getItem('jj_visit_logged')){
+      // Isi session (tab) mein dobara refresh hone par dubara count na ho
+      // Naya session (app dobara khulne par) naya visit ginega
+      if(sessionStorage.getItem('jj_visit_logged')){
         return;
       }
 
@@ -183,7 +184,7 @@
         timestamp: serverTimestamp()
       });
 
-      localStorage.setItem('jj_visit_logged', '1');
+      sessionStorage.setItem('jj_visit_logged', '1');
     }catch(e){
       console.error("visit log failed", e);
     }
