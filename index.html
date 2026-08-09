@@ -3,141 +3,138 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-<title>Admin Panel</title>
-<meta name="robots" content="noindex, nofollow">
-<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@700&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+<title>Junaid Jamshed | WhatsApp Channel</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "xzrqmkiyha");
+</script>
 <style>
   :root{
-    --emerald-deep:#0b3d2e; --emerald-dark:#082a20; --gold:#d4af37; --gold-soft:#e9cd7a;
-    --cream:#f6efdd; --sage:#7fa88f;
+    --emerald-deep:#0b3d2e;
+    --emerald-dark:#082a20;
+    --gold:#d4af37;
+    --gold-soft:#e9cd7a;
+    --cream:#f6efdd;
+    --ink:#0f1d16;
+    --sage:#7fa88f;
   }
   *{margin:0;padding:0;box-sizing:border-box;}
-  html,body{min-height:100%;background:var(--emerald-dark);font-family:'Poppins',sans-serif;color:var(--cream);}
-  body{display:flex;align-items:center;justify-content:center;min-height:100vh;padding:24px;}
-  .panel{width:100%;max-width:420px;background:linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.01));border:1px solid rgba(212,175,55,0.3);border-radius:18px;padding:30px 24px;}
-  h1{font-family:'Amiri',serif;font-size:22px;margin-bottom:6px;color:var(--gold-soft);}
-  .sub{font-size:12px;color:var(--sage);margin-bottom:24px;}
-  label{display:block;font-size:12px;color:var(--sage);margin:16px 0 6px;letter-spacing:0.5px;}
-  input[type=text], input[type=email], input[type=password], input[type=url], textarea{
-    width:100%;padding:11px 13px;background:rgba(0,0,0,0.25);border:1px solid rgba(212,175,55,0.3);border-radius:10px;
-    color:var(--cream);font-family:'Poppins',sans-serif;font-size:14px;outline:none;
+  html,body{height:100%;background:var(--emerald-dark);font-family:'Poppins',sans-serif;color:var(--cream);overflow-x:hidden;}
+  body{
+    display:flex;align-items:flex-start;justify-content:center;min-height:100vh;padding:24px 16px;position:relative;
+    background:
+      radial-gradient(circle at 20% 15%, rgba(212,175,55,0.10), transparent 40%),
+      radial-gradient(circle at 85% 85%, rgba(212,175,55,0.08), transparent 45%),
+      linear-gradient(160deg, var(--emerald-dark) 0%, var(--emerald-deep) 55%, #052018 100%);
   }
-  textarea{resize:vertical;min-height:80px;line-height:1.6;}
-  input:focus, textarea:focus{border-color:var(--gold);}
-  button{width:100%;margin-top:20px;padding:13px;border:none;border-radius:10px;background:linear-gradient(135deg, var(--gold-soft), var(--gold));color:var(--emerald-dark);font-weight:600;font-size:14px;cursor:pointer;}
-  button:active{transform:scale(0.98);}
-  button.secondary{background:transparent;border:1px solid rgba(212,175,55,0.4);color:var(--gold-soft);}
-  .status{margin-top:14px;font-size:13px;text-align:center;min-height:18px;}
-  .status.ok{color:#8fd6ac;}
-  .status.err{color:#e08787;}
-  .hidden{display:none;}
-  .avatar-preview{width:64px;height:64px;border-radius:50%;object-fit:cover;border:2px solid var(--gold);margin-top:10px;display:none;}
-  .file-row{display:flex;gap:10px;align-items:center;margin-top:8px;}
-  small.hint{display:block;margin-top:4px;font-size:11px;color:rgba(216,227,220,0.5);}
+  .lattice{position:fixed;inset:0;opacity:0.06;background-image:repeating-linear-gradient(45deg, var(--gold) 0 1px, transparent 1px 34px),repeating-linear-gradient(-45deg, var(--gold) 0 1px, transparent 1px 34px);pointer-events:none;}
+  .card{
+    position:relative;width:100%;max-width:400px;
+    background:linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
+    border:1px solid rgba(212,175,55,0.35);border-radius:22px;padding:30px 22px 26px;text-align:center;
+    box-shadow:0 30px 60px -20px rgba(0,0,0,0.6), 0 0 0 1px rgba(212,175,55,0.06) inset;
+    backdrop-filter:blur(6px);animation:rise 0.7s cubic-bezier(.2,.8,.2,1) both;
+  }
+  @keyframes rise{from{opacity:0;transform:translateY(18px);}to{opacity:1;transform:translateY(0);}}
+  .card::before,.card::after{content:"";position:absolute;width:26px;height:26px;border:1.5px solid var(--gold);opacity:0.55;}
+  .card::before{top:10px;left:10px;border-right:none;border-bottom:none;border-top-left-radius:10px;}
+  .card::after{bottom:10px;right:10px;border-left:none;border-top:none;border-bottom-right-radius:10px;}
+  .vip-badge{display:inline-flex;align-items:center;gap:6px;padding:5px 14px;border:1px solid var(--gold);border-radius:999px;font-size:10.5px;letter-spacing:2.5px;color:var(--gold-soft);background:rgba(212,175,55,0.08);margin-bottom:18px;text-transform:uppercase;}
+  .avatar-ring{width:82px;height:82px;margin:0 auto 16px;border-radius:50%;padding:3px;background:conic-gradient(from 180deg, var(--gold), var(--gold-soft), var(--gold));display:flex;align-items:center;justify-content:center;}
+  .avatar-ring .inner{width:100%;height:100%;border-radius:50%;background:var(--emerald-deep);display:flex;align-items:center;justify-content:center;font-family:'Amiri',serif;font-size:28px;color:var(--gold-soft);overflow:hidden;}
+  .avatar-ring .inner img{width:100%;height:100%;object-fit:cover;border-radius:50%;}
+  .name-row{display:flex;align-items:center;justify-content:center;gap:6px;margin-bottom:4px;}
+  h1{font-family:'Amiri',serif;font-weight:700;font-size:26px;color:var(--cream);letter-spacing:0.5px;}
+  .verified{width:19px;height:19px;flex-shrink:0;color:#4fb8e8;filter:drop-shadow(0 0 4px rgba(79,184,232,0.5));}
+  .subtitle{font-size:13px;color:var(--sage);letter-spacing:1px;margin-bottom:14px;}
+  .stats-row{display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:22px;font-size:11.5px;color:var(--gold-soft);}
+  .stats-row .dot{width:4px;height:4px;border-radius:50%;background:var(--sage);opacity:0.6;}
+  .stats-row span{display:flex;align-items:center;gap:4px;}
+  .divider{width:60px;height:1px;margin:0 auto 20px;background:linear-gradient(90deg, transparent, var(--gold), transparent);}
 
-  .stats-divider{height:1px;background:rgba(212,175,55,0.25);margin:26px 0 18px;}
-  .section-title{font-family:'Amiri',serif;font-size:18px;color:var(--gold-soft);margin-bottom:14px;}
-  .stat-cards{display:flex;gap:10px;margin-bottom:14px;}
-  .stat-card{flex:1;background:rgba(212,175,55,0.08);border:1px solid rgba(212,175,55,0.3);border-radius:12px;padding:14px;text-align:center;}
-  .stat-num{font-size:24px;font-weight:600;color:var(--gold-soft);}
-  .stat-label{font-size:11px;color:var(--sage);margin-top:2px;}
-  .visitor-list{margin-top:14px;max-height:320px;overflow-y:auto;border:1px solid rgba(212,175,55,0.2);border-radius:10px;}
-  .visitor-row{padding:10px 12px;border-bottom:1px solid rgba(212,175,55,0.12);font-size:12px;display:flex;gap:10px;align-items:flex-start;}
-  .visitor-row:last-child{border-bottom:none;}
-  .visitor-row input[type=checkbox]{margin-top:3px;accent-color:var(--gold);width:16px;height:16px;flex-shrink:0;}
-  .visitor-row .vbody{flex:1;}
-  .visitor-row .vtop{display:flex;justify-content:space-between;color:var(--cream);}
-  .visitor-row .vip{font-family:monospace;color:var(--gold-soft);}
-  .visitor-row .vtime{color:var(--sage);}
-  .visitor-row .vsrc{margin-top:3px;font-size:11px;color:var(--sage);}
-  .badge-tiktok{display:inline-block;background:rgba(212,175,55,0.2);color:var(--gold-soft);padding:1px 7px;border-radius:6px;font-size:10px;margin-left:4px;}
-  .time-badge{display:inline-block;margin-top:6px;background:rgba(212,175,55,0.15);border:1px solid rgba(212,175,55,0.35);color:var(--gold-soft);padding:4px 10px;border-radius:8px;font-size:12px;font-weight:600;}
+  .desc-box{
+    position:relative;text-align:left;margin-bottom:26px;padding:16px 16px 16px 18px;border-radius:14px;
+    background:linear-gradient(135deg, rgba(212,175,55,0.10), rgba(212,175,55,0.03));
+    border:1px solid rgba(212,175,55,0.4);
+    box-shadow:0 0 0 1px rgba(212,175,55,0.05) inset, 0 8px 24px -12px rgba(212,175,55,0.35);
+    animation:glow 3s ease-in-out infinite;
+  }
+  @keyframes glow{
+    0%,100%{box-shadow:0 0 0 1px rgba(212,175,55,0.05) inset, 0 8px 24px -12px rgba(212,175,55,0.35);}
+    50%{box-shadow:0 0 0 1px rgba(212,175,55,0.08) inset, 0 8px 30px -8px rgba(212,175,55,0.55);}
+  }
+  .desc-box::before{content:"";position:absolute;left:0;top:10px;bottom:10px;width:3px;border-radius:3px;background:linear-gradient(180deg, var(--gold-soft), var(--gold));}
+  .desc-icon{display:flex;align-items:center;gap:7px;font-size:11px;letter-spacing:1.5px;color:var(--gold-soft);text-transform:uppercase;margin-bottom:8px;font-weight:600;}
+  .desc-icon svg{width:14px;height:14px;flex-shrink:0;}
+  .desc{font-size:14.5px;line-height:1.8;color:#eef3ef;white-space:pre-line;font-weight:400;}
+  .link-box{display:flex;align-items:center;gap:10px;background:rgba(0,0,0,0.25);border:1px solid rgba(212,175,55,0.3);border-radius:12px;padding:12px 14px;margin-bottom:16px;}
+  .link-box span{flex:1;text-align:left;font-size:12px;color:#bcd0c6;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;direction:ltr;}
+  .btn-copy{width:100%;padding:15px;border:none;border-radius:12px;background:linear-gradient(135deg, var(--gold-soft), var(--gold));color:var(--emerald-dark);font-family:'Poppins',sans-serif;font-weight:600;font-size:15px;letter-spacing:0.5px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:10px;transition:transform 0.15s ease;box-shadow:0 10px 25px -8px rgba(212,175,55,0.5);}
+  .btn-copy:active{transform:scale(0.97);}
+  .btn-copy.copied{background:linear-gradient(135deg, #8fd6ac, #5cb885);color:var(--emerald-dark);}
+  .btn-copy svg{width:18px;height:18px;flex-shrink:0;}
+  .btn-open{display:block;margin-top:12px;font-size:13px;color:var(--sage);text-decoration:underline;text-underline-offset:3px;}
+  .loading-dim{opacity:0.4;filter:blur(1px);transition:opacity 0.3s ease, filter 0.3s ease;}
 </style>
 </head>
 <body>
 
-<div class="panel">
-  <h1>Admin Panel</h1>
-  <div class="sub">Hidden — sirf aapke paas ye link hai</div>
+<div class="lattice"></div>
 
-  <!-- LOGIN -->
-  <div id="loginBox">
-    <label>Email</label>
-    <input type="email" id="loginEmail" autocomplete="username">
-    <label>Password</label>
-    <input type="password" id="loginPass" autocomplete="current-password">
-    <button onclick="login()">Login</button>
-    <div class="status" id="loginStatus"></div>
+<div class="card" id="card">
+  <div class="vip-badge">✦ VIP Channel ✦</div>
+
+  <div class="avatar-ring"><div class="inner" id="avatarInner">JJ</div></div>
+
+  <div class="name-row">
+    <h1 id="nameText">Junaid Jamshed</h1>
+    <svg class="verified" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M12 2l2.4 1.7 2.9-.4 1.2 2.6 2.6 1.2-.4 2.9L22 12l-1.7 2.4.4 2.9-2.6 1.2-1.2 2.6-2.9-.4L12 22l-2.4-1.7-2.9.4-1.2-2.6-2.6-1.2.4-2.9L2 12l1.7-2.4-.4-2.9 2.6-1.2 1.2-2.6 2.9.4L12 2z"/>
+      <path d="M9 12.5l2 2 4-4.5" stroke="#0b3d2e" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+    </svg>
+  </div>
+  <div class="subtitle" id="subtitleText">Official Fan WhatsApp Channel</div>
+  <div class="stats-row" id="statsRow">
+    <span>✦ VIP Verified Page</span>
+    <span class="dot"></span>
+    <span id="trustText">Trusted by 3,000+ followers</span>
   </div>
 
-  <!-- EDIT FORM -->
-  <div id="editBox" class="hidden">
-    <label>Name</label>
-    <input type="text" id="fName" placeholder="Junaid Jamshed">
+  <div class="divider"></div>
 
-    <label>Subtitle</label>
-    <input type="text" id="fSubtitle" placeholder="Official Fan WhatsApp Channel">
-
-    <label>Trust Line (VIP Verified Page ke saath dikhta hai)</label>
-    <input type="text" id="fTrustText" placeholder="Trusted by 3,000+ followers">
-
-    <label>About / Description Text</label>
-    <textarea id="fAbout" placeholder="Maine naya WhatsApp channel banaya hai..."></textarea>
-
-    <label>WhatsApp Channel Link</label>
-    <input type="url" id="fLink" placeholder="https://whatsapp.com/channel/...">
-
-    <label>Profile Picture</label>
-    <input type="url" id="fAvatarUrl" placeholder="Image URL (ya neeche se upload karein)">
-    <div class="file-row">
-      <input type="file" id="fAvatarFile" accept="image/*" style="flex:1;">
+  <div class="desc-box">
+    <div class="desc-icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+      Zaroor Padhein
     </div>
-    <img id="avatarPreview" class="avatar-preview">
-    <small class="hint">File choose karne par automatically upload hoke URL fill ho jayega.</small>
-
-    <button onclick="saveConfig()">Save Changes</button>
-    <button class="secondary" onclick="logout()">Logout</button>
-    <div class="status" id="saveStatus"></div>
+    <p class="desc" id="aboutText">Loading...</p>
   </div>
 
-  <!-- VISITOR STATS -->
-  <div id="statsBox" class="hidden">
-    <div class="stats-divider"></div>
-    <h2 class="section-title">Visitors</h2>
-
-    <div class="stat-cards">
-      <div class="stat-card">
-        <div class="stat-num" id="totalVisits">–</div>
-        <div class="stat-label">Total Visits</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-num" id="tiktokVisits">–</div>
-        <div class="stat-label">Se TikTok</div>
-      </div>
-    </div>
-    <div class="stat-cards">
-      <div class="stat-card">
-        <div class="stat-num" id="copiedVisits">–</div>
-        <div class="stat-label">Link Copy Kiya</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-num" id="bouncedVisits">–</div>
-        <div class="stat-label">Bina Kuch Kiye Gaye</div>
-      </div>
-    </div>
-
-    <button class="secondary" onclick="loadVisitors()">Refresh</button>
-    <button class="secondary" id="deleteSelectedBtn" onclick="deleteSelectedVisitors()" style="margin-top:8px;border-color:#e08787;color:#e08787;">Selected Delete Karein</button>
-
-    <div id="visitorList" class="visitor-list"></div>
+  <div class="link-box">
+    <span id="linkText">whatsapp.com/channel/...</span>
   </div>
+
+  <button class="btn-copy" id="copyBtn" onclick="copyLink()">
+    <svg id="copyIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <rect x="9" y="9" width="12" height="12" rx="2"></rect>
+      <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+    </svg>
+    <span id="btnLabel">Link Copy Karein</span>
+  </button>
+
+  <a class="btn-open" id="openLink" href="#" target="_blank" rel="noopener" onclick="logActionOpen()">
+    Ya seedha yahan tap karein
+  </a>
 </div>
 
 <script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-app.js";
-  import { getAuth, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-auth.js";
-  import { getFirestore, doc, getDoc, setDoc, deleteDoc, collection, query, orderBy, limit, getDocs, getCountFromServer, where } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js";
-  import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-storage.js";
+  import { getFirestore, doc, onSnapshot, collection, addDoc, updateDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js";
 
   const firebaseConfig = {
     apiKey: "AIzaSyBWvG8HNIZu_SGzdGLRS48GJgjUnRxtYg8",
@@ -150,178 +147,152 @@
   };
 
   const app = initializeApp(firebaseConfig);
-  const auth = getAuth(app);
   const db = getFirestore(app);
-  const storage = getStorage(app);
-  const configRef = doc(db, "site", "config");
 
-  const loginBox = document.getElementById('loginBox');
-  const editBox = document.getElementById('editBox');
-  const statsBox = document.getElementById('statsBox');
+  // Log this visit (best-effort, never blocks the page)
+  let visitDocRef = null;
+  let actionLogged = false;
+  const pageLoadTime = Date.now();
 
-  onAuthStateChanged(auth, async (user) => {
-    if(user){
-      loginBox.classList.add('hidden');
-      editBox.classList.remove('hidden');
-      statsBox.classList.remove('hidden');
-      await loadConfig();
-      await loadVisitors();
-    } else {
-      loginBox.classList.remove('hidden');
-      editBox.classList.add('hidden');
-      statsBox.classList.add('hidden');
-    }
-  });
-
-  window.login = async function(){
-    const email = document.getElementById('loginEmail').value.trim();
-    const pass = document.getElementById('loginPass').value;
-    const status = document.getElementById('loginStatus');
-    status.className = 'status';
-    status.textContent = 'Signing in...';
+  (async function logVisit(){
     try{
-      await signInWithEmailAndPassword(auth, email, pass);
-      status.textContent = '';
-    }catch(e){
-      status.className = 'status err';
-      status.textContent = 'Login fail: ' + e.message;
-    }
-  };
-
-  window.logout = function(){
-    signOut(auth);
-  };
-
-  async function loadConfig(){
-    const snap = await getDoc(configRef);
-    if(snap.exists()){
-      const d = snap.data();
-      document.getElementById('fName').value = d.name || '';
-      document.getElementById('fSubtitle').value = d.subtitle || '';
-      document.getElementById('fTrustText').value = d.trustText || '';
-      document.getElementById('fAbout').value = d.about || '';
-      document.getElementById('fLink').value = d.whatsappLink || '';
-      document.getElementById('fAvatarUrl').value = d.avatarUrl || '';
-      if(d.avatarUrl){
-        const preview = document.getElementById('avatarPreview');
-        preview.src = d.avatarUrl;
-        preview.style.display = 'block';
-      }
-    }
-  }
-
-  document.getElementById('fAvatarFile').addEventListener('change', async (e) => {
-    const file = e.target.files[0];
-    if(!file) return;
-    const status = document.getElementById('saveStatus');
-    status.className = 'status';
-    status.textContent = 'Uploading image...';
-    try{
-      const fileRef = ref(storage, 'profile/avatar_' + Date.now());
-      await uploadBytes(fileRef, file);
-      const url = await getDownloadURL(fileRef);
-      document.getElementById('fAvatarUrl').value = url;
-      const preview = document.getElementById('avatarPreview');
-      preview.src = url;
-      preview.style.display = 'block';
-      status.className = 'status ok';
-      status.textContent = 'Image upload ho gayi. Ab Save Changes dabayein.';
-    }catch(e){
-      status.className = 'status err';
-      status.textContent = 'Upload fail: ' + e.message;
-    }
-  });
-
-  window.saveConfig = async function(){
-    const status = document.getElementById('saveStatus');
-    status.className = 'status';
-    status.textContent = 'Saving...';
-    try{
-      await setDoc(configRef, {
-        name: document.getElementById('fName').value.trim(),
-        subtitle: document.getElementById('fSubtitle').value.trim(),
-        trustText: document.getElementById('fTrustText').value.trim(),
-        about: document.getElementById('fAbout').value.trim(),
-        whatsappLink: document.getElementById('fLink').value.trim(),
-        avatarUrl: document.getElementById('fAvatarUrl').value.trim(),
-        updatedAt: new Date().toISOString()
-      }, { merge: true });
-      status.className = 'status ok';
-      status.textContent = 'Save ho gaya ✓ — page par turant update ho jayega.';
-    }catch(e){
-      status.className = 'status err';
-      status.textContent = 'Save fail: ' + e.message;
-    }
-  };
-
-  window.deleteSelectedVisitors = async function(){
-    const checked = document.querySelectorAll('.visitor-check:checked');
-    if(checked.length === 0){
-      alert('Pehle koi visitor select karein.');
-      return;
-    }
-    if(!confirm(`${checked.length} visitor record delete karein?`)) return;
-
-    const btn = document.getElementById('deleteSelectedBtn');
-    btn.textContent = 'Deleting...';
-    try{
-      for(const cb of checked){
-        await deleteDoc(doc(db, "visits", cb.dataset.id));
-      }
-      btn.textContent = 'Selected Delete Karein';
-      await loadVisitors();
-    }catch(e){
-      btn.textContent = 'Selected Delete Karein';
-      alert('Delete fail: ' + e.message);
-    }
-  };
-
-  window.loadVisitors = async function(){
-    const listEl = document.getElementById('visitorList');
-    listEl.innerHTML = '<div class="visitor-row">Loading...</div>';
-    try{
-      const visitsRef = collection(db, "visits");
-
-      const [totalSnap, tiktokSnap, copiedSnap, bouncedSnap, recentSnap] = await Promise.all([
-        getCountFromServer(query(visitsRef)),
-        getCountFromServer(query(visitsRef, where("fromTikTok", "==", true))),
-        getCountFromServer(query(visitsRef, where("action", "in", ["copied","opened_direct"]))),
-        getCountFromServer(query(visitsRef, where("action", "==", "bounced"))),
-        getDocs(query(visitsRef, orderBy("timestamp", "desc"), limit(30)))
-      ]);
-
-      document.getElementById('totalVisits').textContent = totalSnap.data().count;
-      document.getElementById('tiktokVisits').textContent = tiktokSnap.data().count;
-      document.getElementById('copiedVisits').textContent = copiedSnap.data().count;
-      document.getElementById('bouncedVisits').textContent = bouncedSnap.data().count;
-
-      if(recentSnap.empty){
-        listEl.innerHTML = '<div class="visitor-row">Abhi koi visit record nahi hui.</div>';
+      // Same device/browser ka visit dobara count na ho
+      if(localStorage.getItem('jj_visit_logged')){
         return;
       }
 
-      listEl.innerHTML = '';
-      recentSnap.forEach(docSnap => {
-        const v = docSnap.data();
-        const t = v.timestamp && v.timestamp.toDate ? v.timestamp.toDate().toLocaleString() : '—';
-        const src = v.fromTikTok ? 'TikTok se aaya' : (v.referrer && v.referrer !== 'direct' ? v.referrer : 'Direct link');
-        const actionLabel = v.action === 'copied' ? '✓ Link Copy Kiya' : v.action === 'opened_direct' ? '✓ Direct Open Kiya' : v.action === 'bounced' ? '✗ Kuch nahi kiya' : '… abhi page par hai';
-        const timeSpent = v.timeOnPageSec ? `${v.timeOnPageSec} sec ruka` : (v.action === 'none' ? 'time update hone ka intezar...' : '');
-        const row = document.createElement('div');
-        row.className = 'visitor-row';
-        row.innerHTML = `
-          <input type="checkbox" class="visitor-check" data-id="${docSnap.id}">
-          <div class="vbody">
-            <div class="vtop"><span class="vip">${v.ip || 'unknown'}</span><span class="vtime">${t}</span></div>
-            <div class="vsrc">${src}${v.fromTikTok ? '<span class="badge-tiktok">TikTok</span>' : ''}</div>
-            <div class="vsrc">${actionLabel}</div>
-            <div class="time-badge">⏱ ${timeSpent}</div>
-          </div>
-        `;
-        listEl.appendChild(row);
+      let ip = "unknown";
+      try{
+        const res = await fetch('https://api.ipify.org?format=json');
+        const j = await res.json();
+        ip = j.ip || "unknown";
+      }catch(e){}
+
+      const ref = document.referrer || "direct";
+      const urlParams = new URLSearchParams(window.location.search);
+      const srcParam = urlParams.get('src');
+      const fromTikTok = /tiktok/i.test(ref) || srcParam === 'tiktok';
+
+      visitDocRef = await addDoc(collection(db, "visits"), {
+        ip: ip,
+        referrer: ref,
+        fromTikTok: fromTikTok,
+        userAgent: navigator.userAgent,
+        action: "none",
+        timeOnPageSec: 0,
+        timestamp: serverTimestamp()
       });
+
+      localStorage.setItem('jj_visit_logged', '1');
     }catch(e){
-      listEl.innerHTML = '<div class="visitor-row">Load nahi ho saka: ' + e.message + '</div>';
+      console.error("visit log failed", e);
+    }
+  })();
+
+  async function logAction(actionName){
+    if(!visitDocRef || actionLogged) return;
+    actionLogged = true;
+    try{
+      await updateDoc(visitDocRef, {
+        action: actionName,
+        timeOnPageSec: Math.round((Date.now() - pageLoadTime) / 1000)
+      });
+    }catch(e){ console.error("action log failed", e); }
+  }
+
+  async function logBounce(){
+    if(!visitDocRef || actionLogged) return;
+    try{
+      await updateDoc(visitDocRef, {
+        action: "bounced",
+        timeOnPageSec: Math.round((Date.now() - pageLoadTime) / 1000)
+      });
+    }catch(e){}
+  }
+
+  document.addEventListener('visibilitychange', () => {
+    if(document.visibilityState === 'hidden') logBounce();
+  });
+  window.addEventListener('pagehide', logBounce);
+  window.addEventListener('beforeunload', logBounce);
+  window.logActionOpen = () => logAction('opened_direct');
+
+  // Har 5 second mein time-on-page update karte rahein (live tracking)
+  setInterval(async () => {
+    if(!visitDocRef || actionLogged) return;
+    if(document.visibilityState !== 'visible') return;
+    try{
+      await updateDoc(visitDocRef, {
+        timeOnPageSec: Math.round((Date.now() - pageLoadTime) / 1000)
+      });
+    }catch(e){}
+  }, 5000);
+
+  let currentLink = "";
+
+  const configRef = doc(db, "site", "config");
+
+  onSnapshot(configRef, (snap) => {
+    if(!snap.exists()) return;
+    const data = snap.data();
+
+    document.getElementById('nameText').textContent = data.name || "Junaid Jamshed";
+    document.getElementById('subtitleText').textContent = data.subtitle || "Official Fan WhatsApp Channel";
+    document.getElementById('trustText').textContent = data.trustText || "Trusted by 3,000+ followers";
+    document.getElementById('aboutText').textContent = data.about || "";
+
+    const link = data.whatsappLink || "";
+    currentLink = link;
+    document.getElementById('linkText').textContent = link.replace(/^https?:\/\//,'');
+    document.getElementById('openLink').href = link;
+
+    const avatarInner = document.getElementById('avatarInner');
+    if(data.avatarUrl){
+      avatarInner.innerHTML = `<img src="${data.avatarUrl}" alt="profile">`;
+    } else {
+      avatarInner.textContent = data.initials || "JJ";
+    }
+  }, (err) => {
+    console.error("Firestore read error:", err);
+    document.getElementById('aboutText').textContent = "Content load nahi ho saka.";
+  });
+
+  window.copyLink = function(){
+    logAction('copied');
+    const btn = document.getElementById('copyBtn');
+    const label = document.getElementById('btnLabel');
+    const link = currentLink;
+
+    function showCopied(){
+      btn.classList.add('copied');
+      label.textContent = "Copy Ho Gaya! ✓";
+      setTimeout(() => {
+        btn.classList.remove('copied');
+        label.textContent = "Link Copy Karein";
+      }, 2000);
+    }
+
+    if(navigator.clipboard && window.isSecureContext){
+      navigator.clipboard.writeText(link).then(showCopied).catch(fallbackCopy);
+    } else {
+      fallbackCopy();
+    }
+
+    function fallbackCopy(){
+      const ta = document.createElement('textarea');
+      ta.value = link;
+      ta.style.position = 'fixed';
+      ta.style.opacity = '0';
+      document.body.appendChild(ta);
+      ta.focus();
+      ta.select();
+      try{
+        document.execCommand('copy');
+        showCopied();
+      }catch(e){
+        label.textContent = "Copy nahi hua, manually select karein";
+      }
+      document.body.removeChild(ta);
     }
   };
 </script>
