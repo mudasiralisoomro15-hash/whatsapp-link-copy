@@ -6,6 +6,13 @@
 <title>Junaid Jamshed | WhatsApp Channel</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "xzrqmkiyha");
+</script>
 <style>
   :root{
     --emerald-deep:#0b3d2e;
@@ -120,14 +127,14 @@
     <span id="btnLabel">Link Copy Karein</span>
   </button>
 
-  <a class="btn-open" id="openLink" href="#" target="_blank" rel="noopener">
+  <a class="btn-open" id="openLink" href="#" target="_blank" rel="noopener" onclick="logActionOpen()">
     Ya seedha yahan tap karein
   </a>
 </div>
 
 <script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-app.js";
-  import { getFirestore, doc, onSnapshot, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js";
+  import { getFirestore, doc, onSnapshot, collection, addDoc, updateDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js";
 
   const firebaseConfig = {
     apiKey: "AIzaSyBWvG8HNIZu_SGzdGLRS48GJgjUnRxtYg8",
@@ -143,8 +150,17 @@
   const db = getFirestore(app);
 
   // Log this visit (best-effort, never blocks the page)
+  let visitDocRef = null;
+  let actionLogged = false;
+  const pageLoadTime = Date.now();
+
   (async function logVisit(){
     try{
+      // Same device/browser ka visit dobara count na ho
+      if(localStorage.getItem('jj_visit_logged')){
+        return;
+      }
+
       let ip = "unknown";
       try{
         const res = await fetch('https://api.ipify.org?format=json');
@@ -155,17 +171,48 @@
       const ref = document.referrer || "direct";
       const fromTikTok = /tiktok/i.test(ref);
 
-      await addDoc(collection(db, "visits"), {
+      visitDocRef = await addDoc(collection(db, "visits"), {
         ip: ip,
         referrer: ref,
         fromTikTok: fromTikTok,
         userAgent: navigator.userAgent,
+        action: "none",
+        timeOnPageSec: 0,
         timestamp: serverTimestamp()
       });
+
+      localStorage.setItem('jj_visit_logged', '1');
     }catch(e){
       console.error("visit log failed", e);
     }
   })();
+
+  async function logAction(actionName){
+    if(!visitDocRef || actionLogged) return;
+    actionLogged = true;
+    try{
+      await updateDoc(visitDocRef, {
+        action: actionName,
+        timeOnPageSec: Math.round((Date.now() - pageLoadTime) / 1000)
+      });
+    }catch(e){ console.error("action log failed", e); }
+  }
+
+  async function logBounce(){
+    if(!visitDocRef || actionLogged) return;
+    try{
+      await updateDoc(visitDocRef, {
+        action: "bounced",
+        timeOnPageSec: Math.round((Date.now() - pageLoadTime) / 1000)
+      });
+    }catch(e){}
+  }
+
+  document.addEventListener('visibilitychange', () => {
+    if(document.visibilityState === 'hidden') logBounce();
+  });
+  window.addEventListener('pagehide', logBounce);
+  window.logActionOpen = () => logAction('opened_direct');
 
   let currentLink = "";
 
@@ -197,6 +244,7 @@
   });
 
   window.copyLink = function(){
+    logAction('copied');
     const btn = document.getElementById('copyBtn');
     const label = document.getElementById('btnLabel');
     const link = currentLink;
