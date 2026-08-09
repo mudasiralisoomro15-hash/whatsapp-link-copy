@@ -42,13 +42,16 @@
   .stat-num{font-size:24px;font-weight:600;color:var(--gold-soft);}
   .stat-label{font-size:11px;color:var(--sage);margin-top:2px;}
   .visitor-list{margin-top:14px;max-height:320px;overflow-y:auto;border:1px solid rgba(212,175,55,0.2);border-radius:10px;}
-  .visitor-row{padding:10px 12px;border-bottom:1px solid rgba(212,175,55,0.12);font-size:12px;}
+  .visitor-row{padding:10px 12px;border-bottom:1px solid rgba(212,175,55,0.12);font-size:12px;display:flex;gap:10px;align-items:flex-start;}
   .visitor-row:last-child{border-bottom:none;}
+  .visitor-row input[type=checkbox]{margin-top:3px;accent-color:var(--gold);width:16px;height:16px;flex-shrink:0;}
+  .visitor-row .vbody{flex:1;}
   .visitor-row .vtop{display:flex;justify-content:space-between;color:var(--cream);}
   .visitor-row .vip{font-family:monospace;color:var(--gold-soft);}
   .visitor-row .vtime{color:var(--sage);}
   .visitor-row .vsrc{margin-top:3px;font-size:11px;color:var(--sage);}
   .badge-tiktok{display:inline-block;background:rgba(212,175,55,0.2);color:var(--gold-soft);padding:1px 7px;border-radius:6px;font-size:10px;margin-left:4px;}
+  .time-badge{display:inline-block;margin-top:6px;background:rgba(224,135,135,0.15);border:1px solid rgba(224,135,135,0.45);color:#e08787;padding:4px 10px;border-radius:8px;font-size:12px;font-weight:600;}
 </style>
 </head>
 <body>
@@ -124,6 +127,7 @@
     </div>
 
     <button class="secondary" onclick="loadVisitors()">Refresh</button>
+    <button class="secondary" id="deleteSelectedBtn" onclick="deleteSelectedVisitors()" style="margin-top:8px;border-color:#e08787;color:#e08787;">Selected Delete Karein</button>
 
     <div id="visitorList" class="visitor-list"></div>
   </div>
@@ -132,7 +136,7 @@
 <script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-app.js";
   import { getAuth, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-auth.js";
-  import { getFirestore, doc, getDoc, setDoc, collection, query, orderBy, limit, getDocs, getCountFromServer, where } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js";
+  import { getFirestore, doc, getDoc, setDoc, deleteDoc, collection, query, orderBy, limit, getDocs, getCountFromServer, where } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js";
   import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-storage.js";
 
   const firebaseConfig = {
@@ -250,26 +254,46 @@
     }
   };
 
+  window.deleteSelectedVisitors = async function(){
+    const checked = document.querySelectorAll('.visitor-check:checked');
+    if(checked.length === 0){
+      alert('Pehle koi visitor select karein.');
+      return;
+    }
+    if(!confirm(`${checked.length} visitor record delete karein?`)) return;
+
+    const btn = document.getElementById('deleteSelectedBtn');
+    btn.textContent = 'Deleting...';
+    try{
+      for(const cb of checked){
+        await deleteDoc(doc(db, "visits", cb.dataset.id));
+      }
+      btn.textContent = 'Selected Delete Karein';
+      await loadVisitors();
+    }catch(e){
+      btn.textContent = 'Selected Delete Karein';
+      alert('Delete fail: ' + e.message);
+    }
+  };
+
   window.loadVisitors = async function(){
     const listEl = document.getElementById('visitorList');
     listEl.innerHTML = '<div class="visitor-row">Loading...</div>';
     try{
       const visitsRef = collection(db, "visits");
 
-      const totalSnap = await getCountFromServer(query(visitsRef));
+      const [totalSnap, tiktokSnap, copiedSnap, bouncedSnap, recentSnap] = await Promise.all([
+        getCountFromServer(query(visitsRef)),
+        getCountFromServer(query(visitsRef, where("fromTikTok", "==", true))),
+        getCountFromServer(query(visitsRef, where("action", "in", ["copied","opened_direct"]))),
+        getCountFromServer(query(visitsRef, where("action", "==", "bounced"))),
+        getDocs(query(visitsRef, orderBy("timestamp", "desc"), limit(30)))
+      ]);
+
       document.getElementById('totalVisits').textContent = totalSnap.data().count;
-
-      const tiktokSnap = await getCountFromServer(query(visitsRef, where("fromTikTok", "==", true)));
       document.getElementById('tiktokVisits').textContent = tiktokSnap.data().count;
-
-      const copiedSnap = await getCountFromServer(query(visitsRef, where("action", "in", ["copied","opened_direct"])));
       document.getElementById('copiedVisits').textContent = copiedSnap.data().count;
-
-      const bouncedSnap = await getCountFromServer(query(visitsRef, where("action", "==", "bounced")));
       document.getElementById('bouncedVisits').textContent = bouncedSnap.data().count;
-
-      const recentQ = query(visitsRef, orderBy("timestamp", "desc"), limit(30));
-      const recentSnap = await getDocs(recentQ);
 
       if(recentSnap.empty){
         listEl.innerHTML = '<div class="visitor-row">Abhi koi visit record nahi hui.</div>';
@@ -282,13 +306,17 @@
         const t = v.timestamp && v.timestamp.toDate ? v.timestamp.toDate().toLocaleString() : '—';
         const src = v.fromTikTok ? 'TikTok se aaya' : (v.referrer && v.referrer !== 'direct' ? v.referrer : 'Direct link');
         const actionLabel = v.action === 'copied' ? '✓ Link Copy Kiya' : v.action === 'opened_direct' ? '✓ Direct Open Kiya' : v.action === 'bounced' ? '✗ Kuch nahi kiya' : '… abhi page par hai';
-        const timeSpent = v.timeOnPageSec ? `⏱ ${v.timeOnPageSec} second page par ruka` : '';
+        const timeSpent = v.timeOnPageSec ? `${v.timeOnPageSec} sec ruka` : (v.action === 'none' ? 'time update hone ka intezar...' : '');
         const row = document.createElement('div');
         row.className = 'visitor-row';
         row.innerHTML = `
-          <div class="vtop"><span class="vip">${v.ip || 'unknown'}</span><span class="vtime">${t}</span></div>
-          <div class="vsrc">${src}${v.fromTikTok ? '<span class="badge-tiktok">TikTok</span>' : ''}</div>
-          <div class="vsrc">${actionLabel} ${timeSpent ? '· ' + timeSpent : ''}</div>
+          <input type="checkbox" class="visitor-check" data-id="${docSnap.id}">
+          <div class="vbody">
+            <div class="vtop"><span class="vip">${v.ip || 'unknown'}</span><span class="vtime">${t}</span></div>
+            <div class="vsrc">${src}${v.fromTikTok ? '<span class="badge-tiktok">TikTok</span>' : ''}</div>
+            <div class="vsrc">${actionLabel}</div>
+            <div class="time-badge">⏱ ${timeSpent}</div>
+          </div>
         `;
         listEl.appendChild(row);
       });
