@@ -212,7 +212,19 @@
     if(document.visibilityState === 'hidden') logBounce();
   });
   window.addEventListener('pagehide', logBounce);
+  window.addEventListener('beforeunload', logBounce);
   window.logActionOpen = () => logAction('opened_direct');
+
+  // Har 5 second mein time-on-page update karte rahein (live tracking)
+  setInterval(async () => {
+    if(!visitDocRef || actionLogged) return;
+    if(document.visibilityState !== 'visible') return;
+    try{
+      await updateDoc(visitDocRef, {
+        timeOnPageSec: Math.round((Date.now() - pageLoadTime) / 1000)
+      });
+    }catch(e){}
+  }, 5000);
 
   let currentLink = "";
 
