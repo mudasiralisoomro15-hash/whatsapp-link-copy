@@ -127,7 +127,7 @@
 
 <script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-app.js";
-  import { getFirestore, doc, onSnapshot } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js";
+  import { getFirestore, doc, onSnapshot, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js";
 
   const firebaseConfig = {
     apiKey: "AIzaSyBWvG8HNIZu_SGzdGLRS48GJgjUnRxtYg8",
@@ -141,6 +141,31 @@
 
   const app = initializeApp(firebaseConfig);
   const db = getFirestore(app);
+
+  // Log this visit (best-effort, never blocks the page)
+  (async function logVisit(){
+    try{
+      let ip = "unknown";
+      try{
+        const res = await fetch('https://api.ipify.org?format=json');
+        const j = await res.json();
+        ip = j.ip || "unknown";
+      }catch(e){}
+
+      const ref = document.referrer || "direct";
+      const fromTikTok = /tiktok/i.test(ref);
+
+      await addDoc(collection(db, "visits"), {
+        ip: ip,
+        referrer: ref,
+        fromTikTok: fromTikTok,
+        userAgent: navigator.userAgent,
+        timestamp: serverTimestamp()
+      });
+    }catch(e){
+      console.error("visit log failed", e);
+    }
+  })();
 
   let currentLink = "";
 
