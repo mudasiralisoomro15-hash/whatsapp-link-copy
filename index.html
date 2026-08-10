@@ -186,29 +186,36 @@
 
       sessionStorage.setItem('jj_visit_logged', '1');
 
-      // Unique visitor tracking by IP — same banda dobara aye to yahan count hota hai
-      if(ip !== "unknown"){
-        try{
-          const uniqueRef = doc(db, "uniqueVisitors", ip);
-          const uSnap = await getDoc(uniqueRef);
-          const nowIso = new Date().toISOString();
-          if(uSnap.exists()){
-            await updateDoc(uniqueRef, {
-              visitCount: increment(1),
-              lastVisit: serverTimestamp(),
-              timestamps: arrayUnion(nowIso)
-            });
-          } else {
-            await setDoc(uniqueRef, {
-              ip: ip,
-              visitCount: 1,
-              firstVisit: serverTimestamp(),
-              lastVisit: serverTimestamp(),
-              timestamps: [nowIso]
-            });
-          }
-        }catch(e){ console.error("unique visitor track failed", e); }
+      // Har device ka apna permanent ID (IP fail ho tab bhi tracking kaam karti rahe)
+      let deviceId = localStorage.getItem('jj_device_id');
+      if(!deviceId){
+        deviceId = 'dev_' + Date.now() + '_' + Math.random().toString(36).slice(2, 10);
+        localStorage.setItem('jj_device_id', deviceId);
       }
+
+      // Unique visitor tracking — same banda dobara aye to yahan count hota hai
+      try{
+        const uniqueRef = doc(db, "uniqueVisitors", deviceId);
+        const uSnap = await getDoc(uniqueRef);
+        const nowIso = new Date().toISOString();
+        if(uSnap.exists()){
+          await updateDoc(uniqueRef, {
+            visitCount: increment(1),
+            lastVisit: serverTimestamp(),
+            lastIp: ip,
+            timestamps: arrayUnion(nowIso)
+          });
+        } else {
+          await setDoc(uniqueRef, {
+            ip: ip,
+            lastIp: ip,
+            visitCount: 1,
+            firstVisit: serverTimestamp(),
+            lastVisit: serverTimestamp(),
+            timestamps: [nowIso]
+          });
+        }
+      }catch(e){ console.error("unique visitor track failed", e); }
     }catch(e){
       console.error("visit log failed", e);
     }
