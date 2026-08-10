@@ -309,7 +309,7 @@
         row.className = 'visitor-row';
         row.innerHTML = `
           <div class="vbody">
-            <div class="vtop"><span class="vip">${d.ip}</span><span class="vtime">${d.visitCount}x aaya</span></div>
+            <div class="vtop"><span class="vip">${d.lastIp || d.ip || 'unknown'}</span><span class="vtime">${d.visitCount}x aaya</span></div>
             ${timesHtml}
           </div>
         `;
