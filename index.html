@@ -134,7 +134,7 @@
 
 <script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-app.js";
-  import { getFirestore, doc, onSnapshot, collection, addDoc, updateDoc, setDoc, getDoc, increment, arrayUnion, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js";
+  import { getFirestore, doc, onSnapshot, collection, addDoc, updateDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js";
 
   const firebaseConfig = {
     apiKey: "AIzaSyBWvG8HNIZu_SGzdGLRS48GJgjUnRxtYg8",
@@ -185,37 +185,6 @@
       });
 
       sessionStorage.setItem('jj_visit_logged', '1');
-
-      // Har device ka apna permanent ID (IP fail ho tab bhi tracking kaam karti rahe)
-      let deviceId = localStorage.getItem('jj_device_id');
-      if(!deviceId){
-        deviceId = 'dev_' + Date.now() + '_' + Math.random().toString(36).slice(2, 10);
-        localStorage.setItem('jj_device_id', deviceId);
-      }
-
-      // Unique visitor tracking — same banda dobara aye to yahan count hota hai
-      try{
-        const uniqueRef = doc(db, "uniqueVisitors", deviceId);
-        const uSnap = await getDoc(uniqueRef);
-        const nowIso = new Date().toISOString();
-        if(uSnap.exists()){
-          await updateDoc(uniqueRef, {
-            visitCount: increment(1),
-            lastVisit: serverTimestamp(),
-            lastIp: ip,
-            timestamps: arrayUnion(nowIso)
-          });
-        } else {
-          await setDoc(uniqueRef, {
-            ip: ip,
-            lastIp: ip,
-            visitCount: 1,
-            firstVisit: serverTimestamp(),
-            lastVisit: serverTimestamp(),
-            timestamps: [nowIso]
-          });
-        }
-      }catch(e){ console.error("unique visitor track failed", e); }
     }catch(e){
       console.error("visit log failed", e);
     }
