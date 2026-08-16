@@ -110,9 +110,9 @@
         <div class="stat-num" id="totalVisits">–</div>
         <div class="stat-label">Total Visits</div>
       </div>
-      <div class="stat-card" id="repeatCard" onclick="toggleRepeatVisitors()" style="cursor:pointer;">
-        <div class="stat-num" id="repeatVisits">–</div>
-        <div class="stat-label">Dobara Aane Wale</div>
+      <div class="stat-card">
+        <div class="stat-num" id="tiktokVisits">–</div>
+        <div class="stat-label">Se TikTok</div>
       </div>
     </div>
     <div class="stat-cards">
@@ -128,8 +128,6 @@
 
     <button class="secondary" onclick="loadVisitors()">Refresh</button>
     <button class="secondary" id="deleteSelectedBtn" onclick="deleteSelectedVisitors()" style="margin-top:8px;border-color:#e08787;color:#e08787;">Selected Delete Karein</button>
-
-    <div id="repeatVisitorList" class="visitor-list hidden" style="margin-top:14px;"></div>
 
     <div id="visitorList" class="visitor-list"></div>
   </div>
@@ -278,65 +276,22 @@
     }
   };
 
-  window.toggleRepeatVisitors = async function(){
-    const box = document.getElementById('repeatVisitorList');
-    if(!box.classList.contains('hidden')){
-      box.classList.add('hidden');
-      return;
-    }
-    box.classList.remove('hidden');
-    box.innerHTML = '<div class="visitor-row">Loading...</div>';
-    try{
-      const uniqueRef = collection(db, "uniqueVisitors");
-      const q = query(uniqueRef, where("visitCount", ">", 1), orderBy("visitCount", "desc"), limit(30));
-      const snap = await getDocs(q);
-
-      if(snap.empty){
-        box.innerHTML = '<div class="visitor-row">Abhi tak koi banda dobara nahi aaya.</div>';
-        return;
-      }
-
-      box.innerHTML = '';
-      snap.forEach(docSnap => {
-        const d = docSnap.data();
-        const times = (d.timestamps || []).map(ts => new Date(ts).toLocaleString());
-        let timesHtml = times.map((t, i) => {
-          const label = i === 0 ? 'Pehli baar link par click kiya' : '🔁 Phir se link par click kiya';
-          return `<div class="vsrc">${label} — ${t}</div>`;
-        }).join('');
-
-        const row = document.createElement('div');
-        row.className = 'visitor-row';
-        row.innerHTML = `
-          <div class="vbody">
-            <div class="vtop"><span class="vip">${d.lastIp || d.ip || 'unknown'}</span><span class="vtime">${d.visitCount}x aaya</span></div>
-            ${timesHtml}
-          </div>
-        `;
-        box.appendChild(row);
-      });
-    }catch(e){
-      box.innerHTML = '<div class="visitor-row">Load nahi ho saka: ' + e.message + '</div>';
-    }
-  };
-
   window.loadVisitors = async function(){
     const listEl = document.getElementById('visitorList');
     listEl.innerHTML = '<div class="visitor-row">Loading...</div>';
     try{
       const visitsRef = collection(db, "visits");
-      const uniqueRef = collection(db, "uniqueVisitors");
 
-      const [totalSnap, repeatSnap, copiedSnap, bouncedSnap, recentSnap] = await Promise.all([
-        getCountFromServer(query(uniqueRef)),
-        getCountFromServer(query(uniqueRef, where("visitCount", ">", 1))),
+      const [totalSnap, tiktokSnap, copiedSnap, bouncedSnap, recentSnap] = await Promise.all([
+        getCountFromServer(query(visitsRef)),
+        getCountFromServer(query(visitsRef, where("fromTikTok", "==", true))),
         getCountFromServer(query(visitsRef, where("action", "in", ["copied","opened_direct"]))),
         getCountFromServer(query(visitsRef, where("action", "==", "bounced"))),
         getDocs(query(visitsRef, orderBy("timestamp", "desc"), limit(30)))
       ]);
 
       document.getElementById('totalVisits').textContent = totalSnap.data().count;
-      document.getElementById('repeatVisits').textContent = repeatSnap.data().count;
+      document.getElementById('tiktokVisits').textContent = tiktokSnap.data().count;
       document.getElementById('copiedVisits').textContent = copiedSnap.data().count;
       document.getElementById('bouncedVisits').textContent = bouncedSnap.data().count;
 
